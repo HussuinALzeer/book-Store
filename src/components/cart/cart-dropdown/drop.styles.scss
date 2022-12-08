@@ -1,0 +1,100 @@
+.cart-dropdown{
+    position: absolute;
+    width: 240px;
+    height: 340px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid black;
+    background-color: white;
+    top: 80px;
+    right: 10px;
+    z-index: 5;
+
+    .cart-items{
+        height: 240px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        
+        overflow: scroll;
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  
+    }
+
+    .con{
+        margin-top: auto;
+
+        .liq-con{
+            position: relative;
+            padding: 20px 20px;
+            display: block;
+            text-decoration: none;
+            width: 200px;
+            overflow: hidden;
+            border-radius: 40px;
+            display: flex;
+            justify-content: center;
+            span{
+                position: relative;
+                color: #fff;
+                font-size: 20px;
+                font-family: Arial, Helvetica, sans-serif;
+                letter-spacing: 2px;
+                z-index: 1;
+                
+
+            }
+
+            .liquid{
+                position: absolute;
+                top: -80px;
+                left: 0;
+                width: 244px;
+                height: 200px;
+                background: #cc5500;
+                // box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+                transition: 0.5s;
+
+                &::before,::after{
+                    content: '';
+                    width: 200%;
+                    height: 200%;
+                    position: absolute;
+                    top: 0;
+                    left: 50%;
+                    transform: translate(-50%,-75%);
+                    background: #000;
+                }
+
+
+                &::before{
+                    border-radius: 45%;
+                    background: rgba(20, 20, 20, 1);
+                    animation: animate 5s  linear  infinite;
+                }
+
+                &::after{
+                    border-radius: 40%;
+                    background: rgba(20, 20, 20, .5);
+                    animation: animate 10s  linear infinite;
+                }
+            }
+
+            &:hover .liquid{
+                top: -120px;
+
+            }
+        }
+    }
+}
+
+@keyframes animate {
+    0%{
+        transform: translate(-50%,-75%) rotate(0deg);
+    }
+
+    100%{
+        transform: translate(-50%,-75%) rotate(360deg);
+    }
+}

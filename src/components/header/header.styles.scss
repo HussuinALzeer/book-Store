@@ -1,0 +1,101 @@
+.Header{
+    height: 70px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    position: relative;
+
+    .logo{
+        height: 100%;
+        width: 70px;
+        padding: 25px;
+    }
+
+    .search{
+        width: 70%;
+        height: 100%;
+        background-color: aquamarine;
+        top: 200%;
+        left:50%;
+        transform: translate(-50%,-50%);
+        position: absolute;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+
+      .search-con{
+        width: 100%;
+        height: 80px;
+        background: white;
+        position: relative;    
+        border-radius: 4px;
+        transition: width 0.5s;
+
+
+        input{
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: calc(100% - 90px);
+            border: none;
+            outline: none;
+            font-size: 26px;
+            padding: 15px 10px;
+            color: #666;
+        }
+
+        .icon-s{
+            width: 60px;
+            height: 60px;
+            background-color: rgba(254, 71, 4, 0.701);
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            transition: 0.5s;
+            border-radius: 4px;
+
+            &::before{
+                content: '';
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                width: 24px;
+                height: 24px; 
+                background-color: transparent;
+                border: 2px solid white;
+                border-radius: 50%;
+                transition: 0.5s;
+
+            }
+
+            &::after{
+                content: '';
+                position: absolute;
+                top: 25px;
+                left: 35px;
+                width: 18px;
+                height: 18px; 
+                background-color: transparent;
+                border-left: 2px solid white;
+                border-radius: 0%;
+                transform: rotate(-45deg);
+                transition: 0.5s;
+            }
+        }
+      }
+    }
+
+
+    .options{
+        width: 20%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        .option{
+            padding: 10px 15px;
+        }
+    }
+
+}

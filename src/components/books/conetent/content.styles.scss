@@ -1,0 +1,31 @@
+.button{
+    
+    .price{
+        width: 70%;
+        background-color: aliceblue;
+        height: 100%;
+        display: flex;align-items: center;
+        justify-content: center;
+    }
+
+    .button-con{
+        width: 30%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .btn{
+            border: none;
+            height: 100%;
+            width: 100%;
+            background-color: #cc5500;
+            cursor: pointer;
+            color: white;
+
+            .cart{
+                width: 30px;
+            }
+        }
+    }
+}
