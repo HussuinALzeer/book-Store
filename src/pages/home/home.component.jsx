@@ -35,8 +35,8 @@ const Home = () =>{
             <div className="directory-menu">
                 {
 
-                    books.map(({id,title,last}) =>(
-                        <MenyItem key={id} title={title} last={last} ></MenyItem>
+                    books.map((item) =>(
+                        <MenyItem key={item.id} item={item} ></MenyItem>
                     ))
                 }
                 

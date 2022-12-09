@@ -3,27 +3,31 @@ import { db } from "../../../firebase";
 import './content.styles.scss'
 import {ReactComponent as Logo} from '../../../asset/cart.svg'
 
+import { connect } from "react-redux";
 
-const Content = ({title,last}) =>{
+import { addItem } from "../../../redux/cart/cart.action";
+
+const Content = ({item,addItem}) =>{
     
-    
+    const {title,last} = item
 
     const add = async (e) =>{
         e.preventDefault()
-        try {
-            const docRef = await addDoc(collection(db, "books"), {
-              title: "Lovelace",
-              last: "Lovelace author",
+        // try {
+        //     const docRef = await addDoc(collection(db, "books"), {
+        //       title: "Lovelace",
+        //       last: "Lovelace author",
               
-            });
-            console.log("Document written with ID: ", docRef.id);
-          } catch (e) {
-            console.error("Error adding document: ", e);
-          }
+        //     });
+        //     console.log("Document written with ID: ", docRef.id);
+        //   } catch (e) {
+        //     console.error("Error adding document: ", e);
+        //   }
 
     }
 
     return(
+
         <div className="">
             <div className="content">
                         <div className="img">
@@ -34,7 +38,7 @@ const Content = ({title,last}) =>{
                         <div className="button">
                             <div className="price">price</div>
                             <div className="button-con">
-                                <button className="btn" onClick={add}>add to cart</button>    
+                                <button className="btn" onClick={() => addItem(item)}>add to cart</button>    
                             </div>    
                         </div> 
                     </div>
@@ -42,4 +46,8 @@ const Content = ({title,last}) =>{
     )
 }
 
-export default Content
+const mapdispatchToProps = (dispatch) =>({
+    addItem : (item) =>dispatch(addItem(item))
+})
+
+export default connect(null,mapdispatchToProps)(Content)

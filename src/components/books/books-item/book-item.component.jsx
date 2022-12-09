@@ -5,14 +5,14 @@ import Content from "../conetent/conetent.component";
 
 import './book-item.styles.scss'
 
-const MenyItem= ({title,last}) =>{
+const MenyItem= ({item}) =>{
 
    
 
     return(
         <div className="">
             <div className="menu-item">
-                   <Content title={title} last={last} ></Content>
+                   <Content item={item} ></Content>
                 </div>
         </div>
     )
