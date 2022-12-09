@@ -26,7 +26,6 @@ const Home = () =>{
         fetchData()
     },[])
 
-    console.log(books);
 
     return(
 
