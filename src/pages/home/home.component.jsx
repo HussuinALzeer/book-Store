@@ -1,10 +1,11 @@
 import { collection, getDocs } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import MenyItem from "../../components/books/books-item/book-item.component";
-import Header from "../../components/header/header.component";
 import { db } from "../../firebase";
 import './home.styles.scss';
-
+import Header from "../../components/header/header.component";
+import Tags from "../../components/tags/tags.component";
+import SearchBar from "../../components/search-bar/search-bar.component";
 
 
 const Home = () =>{
@@ -31,6 +32,9 @@ const Home = () =>{
 
 
         <div className="homepage">
+                  
+          <SearchBar></SearchBar>          
+          <Tags></Tags>
             <div className="directory-menu">
                 {
 

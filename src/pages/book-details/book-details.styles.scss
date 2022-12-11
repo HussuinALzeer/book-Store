@@ -1,0 +1,74 @@
+.book-img{
+   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 370px;
+    
+    .img{
+        position: absolute;
+        top:30%;
+        left: 50%;
+        transform: translate(-50%,-20%);
+
+        img{
+            width: 240px;
+            height: 370px;
+        }
+    }
+}
+
+
+.book-details{
+    
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    line-height: 30px;
+    font-size: 20px;
+    font-weight: 400;
+
+    .authro{
+        h3{
+            font-weight: 300;
+            font-size: 1.1em;
+        }
+    }
+
+    .title{
+        line-height: 40px;
+    }
+
+    .book-details-d{
+
+        p{
+            font-weight: 300;
+            span{
+                font-weight: 400;
+            }
+        }
+    }
+}
+
+
+.add-to-cart{
+    // background-color: brown;
+    display: flex;
+    justify-content: center;
+    height: 150px;
+
+    .box{
+        width: 300px !important;
+        height: 80px;
+        background-color: white;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        border-radius: 8px;
+    }
+    
+}

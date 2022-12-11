@@ -1,0 +1,26 @@
+.SignIn{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+
+    .title{
+        margin: 10px 0;
+    }
+
+    CustomButton{
+        margin-left: 110px;
+    }
+}
+
+
+
+.btn-con{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+

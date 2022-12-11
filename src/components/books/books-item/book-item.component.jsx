@@ -14,6 +14,7 @@ const MenyItem= ({item}) =>{
             <div className="menu-item">
                    <Content item={item} ></Content>
                 </div>
+
         </div>
     )
 }

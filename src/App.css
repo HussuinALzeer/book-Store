@@ -1,3 +1,14 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,200;1,500&family=Bigelow+Rules&display=swap');.App {
     background-color: #eee;
+    font-family: 'Barlow Condensed', sans-serif;
+
+}
+@import 'bootstrap/dist/css/bootstrap.css';
+
+
+.App{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 20px;
 }
