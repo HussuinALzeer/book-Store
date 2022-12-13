@@ -1,14 +1,128 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,200;1,500&family=Bigelow+Rules&display=swap');.App {
-    background-color: #eee;
-    font-family: 'Barlow Condensed', sans-serif;
-
-}
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,200;1,500&family=Bigelow+Rules&family=Montserrat:wght@300;400;500;600;700&display=swap');
 @import 'bootstrap/dist/css/bootstrap.css';
 
+::-webkit-scrollbar{
+    display: none;
+}
 
+*{
+    padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    transition: 0.3s ease;
+}
 .App{
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px 20px;
+    justify-content: center;
+    padding: 1rem;
+    background-color: var(--WhiteColor);
+}
+
+:root{
+    --primaryColor:hsl(94,59%,35%);
+    --HoverColor:#bdf094;
+    --paleGreen:hsl(96,75%,89%);
+    --WhiteColor:hsl(0,0%,100%);
+    --BlackColor:hsl(0,0%,18%);
+    --TextColor:hsl(240,1%,48%);
+    --BgColor:hsl(220,10%,94%);
+    --GreyText: #eee;
+    --InputColor:hsl(330,12%,97%);
+    
+    /* 
+    font
+    */  
+    
+    --biggestFontSize:2.5rem;
+    --h1FontSize:1.5rem;
+    --h2FontSize:1.25rem;
+    --h3FontSize:1rem;
+    --normalFontSize:0.938rem;
+    --smallFontSize:.813rem;
+
+}
+
+html{
+    
+}
+
+a{
+    text-decoration: none;
+}
+
+li{
+    list-style: none;
+}
+
+.icon{
+   cursor: pointer;
+    font-size: var(--h2FontSize);
+}
+
+img{
+    width: 100%;
+    height: auto;   
+   }
+
+.flex{
+    display: flex;
+    align-items: center;
+}   
+
+.grid{
+    display: grid;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.btn{
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px var(--InputColor);
+    padding: 0.8rem 1rem;
+    color: var(--TextColor);
+
+    
+}
+
+.btn .icon{
+    margin-left: 0.5rem;
+
+}
+
+.btn:hover{
+    background-color: var(--paleGreen);
+    color: var(--primaryColor);
+}
+
+
+.containerr{
+    position: relative;
+    width: 95vw;
+    height: 95vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:var(--InputColor);
+    overflow: hidden;
+    border-radius: 1rem;
+    box-shadow: 0px -1px 15px 5px rgba(0,0,0,0.2);
+}
+
+
+
+
+@media screen and (max-width :990px){
+
+    .heading{
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
 }

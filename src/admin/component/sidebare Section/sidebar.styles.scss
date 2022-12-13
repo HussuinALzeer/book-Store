@@ -1,0 +1,224 @@
+
+:root{
+    --primaryColor:hsl(94,59%,35%);
+    --HoverColor:#bdf094;
+    --paleGreen:hsl(96,75%,89%);
+    --WhiteColor:hsl(0,0%,100%);
+    --BlackColor:hsl(0,0%,18%);
+    --TextColor:hsl(240,1%,48%);
+    --BgColor:hsl(220,10%,94%);
+    --GreyText:hsl(190,190%,190%);
+    --InputColor:hsl(330,12%,97%);
+    
+    /* 
+    font
+    */  
+    
+    --biggestFontSize:2.5rem;
+    --h1FontSize:1.5rem;
+    --h2FontSize:1.25rem;
+    --h3FontSize:1rem;
+    --normalFontSize:0.938rem;
+    --smallFontSize:.813rem;
+
+}
+
+
+.sidebar{
+    background-color: white;
+    width: 18%;
+    box-shadow: 1px 0 4px #eee ;
+    height: 100%;
+    gap: 3rem;
+    overflow: auto;
+
+    .logoDiv{
+        padding: 1.5rem 1.5rem 0;
+        cursor: pointer;
+
+        img{
+            max-width: 20px;
+            margin-right: 0.5rem;
+            background-color: var(--InputColor);
+            padding: 0.2rem;
+            
+        }
+
+        h2{
+            font-size: var(--h2FontSize);
+            color: var(--primaryColor);
+        }
+    }
+
+    .menuDiv,.settingDiv{
+        
+        .divTitle{
+            font-size: var(--h3FontSize);
+            color: var(--BlackColor);
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        .menuLists{
+
+            .listItem{
+                padding: 0.2rem 1.5rem;
+                width: 100%;
+                position: relative;
+
+
+                &::before{
+                    position: absolute;
+                    content: '';
+                    height: 0%;
+                    left: 0;
+                    width: 5px;
+                    bottom: 0;
+                    border-top-right-radius: 10px;
+                    border-bottom-right-radius: 10px;
+                    background: var(--primaryColor);
+                    transition: 0.3s;
+                }
+
+                .menuLink {
+                    color: rgb(76, 75, 75);
+                    font-weight: 500;
+
+                    .icon{
+                        margin-right: 0.5rem;
+                    }
+                }
+
+                &:hover .menuLink{
+                    color: var(--primaryColor);
+                    transition: 0s;
+                }
+
+                &:hover::before{
+                    height: 100%;
+                    transition: .3s ease;
+                }
+            }
+        }
+    }
+
+    .sidebarCard {
+        width: 100%;
+        padding: 10px;
+        text-align: center;
+        position: relative;
+
+        .icon{
+            position: absolute;
+            background: var(--HoverColor);
+            border: 10px solid var(--WhiteColor);
+            font-size: 3rem;
+            border-radius: 50%;
+            top: -8px;
+            right: 50%;
+            transform: translate(50%);
+            z-index: 100;
+        }
+
+        .cardContent{
+            position: relative;
+            padding: 1rem;
+            background: var(--HoverColor);
+            border-radius: 10px;
+            overflow: hidden;
+
+            h3{
+                font-size: var(--h3FontSize);
+                margin-top: 1rem;
+                padding: 1rem 0;
+                font-weight:800;
+                color: var(--BlackColor);
+            }
+
+            p{
+                font-size: var(--normalFontSize);
+                color: var(--TextColor);
+                padding-bottom: 1rem;
+                font-weight: 500;
+            }
+
+            .btn{
+                position: relative;
+                color: var(--TextColor);
+                z-index: 1000;
+            }
+
+            .circle1,.circle2{
+                position: absolute;
+                background: var(--paleGreen);
+                border-radius: 50%;
+                opacity: 0.7;
+            }
+
+            .circle1{
+                height: 100px;
+                width: 100px;
+                top: -50px;
+                left: -50px;
+            }
+
+            .circle2{
+                height: 150px;
+                width: 150px;
+                bottom: -80px;
+                right: -70px;
+                z-index: 1;
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width :990px){
+
+    .sidebar{
+        padding-bottom: 2rem;
+
+        .sidebarCard{
+            display: none !important;
+        }
+    }
+    
+}
+
+
+@media screen and (max-width :745px){
+
+    .sidebar{
+        padding-bottom: 0;
+        align-items: center;
+        justify-content: center;
+        width: 10%;
+        margin-right: 10px;
+        .logoDiv{
+            text-align: center;
+            margin: auto;
+            padding: 1.5rem .5rem 0;
+
+            img{
+                max-width: 50px;
+                margin: 0;
+                border-radius: 10px;
+                padding: .5rem;
+            }
+
+            h2{
+                display: none;
+            }
+        }
+
+        .divTitle ,.smallText{
+            display: none;
+        }
+
+        
+        li{
+            margin-right: 20px !important;
+        }
+    }
+    
+}

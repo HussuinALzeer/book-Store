@@ -10,6 +10,8 @@ import SearchBar from './components/search-bar/search-bar.component';
 import Login from './pages/login/login.component';
 import SignIn from './pages/sign-in/signin.component';
 import BookDetails from './pages/book-details/book-details.component';
+import Admin from './pages/admin/admin';
+import AddPage from './admin/component/add/add.component';
 
 
 function App() {
@@ -27,6 +29,7 @@ function App() {
             <Route path='/search/:id' element={<SreachPage></SreachPage>} ></Route>
             <Route path='/login' element={<Login></Login>} ></Route>
             <Route path='/bookdetails/:bookId' element={<BookDetails></BookDetails>} ></Route>
+            <Route path='/admin' element={<Admin></Admin>}></Route>
 
           </Routes>
       
