@@ -6,7 +6,7 @@ const AddPage = () =>{
     return(
         <div className="">
 
-            add
+            add page
         </div>
     )
 }

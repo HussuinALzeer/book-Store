@@ -126,3 +126,9 @@ img{
     }
     
 }
+
+img.table-image{
+    height: 100px;
+    width: 70px;
+    margin-left: 20px;
+}
