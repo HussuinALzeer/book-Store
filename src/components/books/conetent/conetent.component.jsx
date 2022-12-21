@@ -2,25 +2,24 @@
 import './content.styles.scss'
 
 import { connect } from "react-redux";
-
 import { addItem } from "../../../redux/cart/cart.action";
 import { Link } from 'react-router-dom';
 
 const Content = ({item,addItem}) =>{
     
-    const {title,last,id} = item
+    const {name,author,id,img} = item
 
     return(
 
         <div className="">
             <div  className="content">
                         <Link to={`bookdetails/${id}`} className="img">
-                            <img src="https://picsum.photos/200/300" alt="" />
+                            <img src={img} alt="" />
                         </Link>
-                        <h2 className="title">{title}</h2>
-                        <h3 className="author">{last}</h3>   
+                        <h2 className="title">{name}</h2>
+                        <h3 className="author">{author}</h3>   
                         <div className="button">
-                            <div className="price">$ 3 </div>
+                            <div className="price">cost: 3 $ </div>
                             <div className="button-con">
                                 <button className="btn" onClick={() => addItem(item)}>add to cart</button>    
                             </div>    

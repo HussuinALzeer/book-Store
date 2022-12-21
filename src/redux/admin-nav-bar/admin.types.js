@@ -1,4 +1,4 @@
-const admintypesAction = {
+export const admintypesAction = {
 
     ALL_BOOKS :'ALL_BOOKS',
     RECENT_ORDER:'RECENT_ORDER',

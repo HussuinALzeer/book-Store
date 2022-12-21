@@ -69,9 +69,6 @@ const adminReducer = ( state= INITIAL_STATE,action)=>{
         default:
             return {
                 ...state,
-                editPage:false,
-                editPageID:action.payload
-
             }    
     }
 }
