@@ -7,12 +7,19 @@ import Header from "../../components/header/header.component";
 import Tags from "../../components/tags/tags.component";
 import SearchBar from "../../components/search-bar/search-bar.component";
 
+import { searchBar } from "../../redux/getbook/book.selector";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 
-const Home = () =>{
+const Home = ({searchBar}) =>{
+
     const [books,setBooks]=useState([])
+
+   
 
     useEffect (() =>{
         const fetchData = async () =>{
+
            let list =[] 
             try {
                 const querySnapshot = await getDocs(collection(db, "books"));
@@ -28,17 +35,22 @@ const Home = () =>{
     },[])
 
 
+    const filterBooks = books.filter(book => 
+        book.name.toLowerCase().includes(searchBar.toLowerCase())
+        )
+
+
     return(
 
 
-        <div className="homepage">
+        <div className="homepage" id="homepage">
                   
           <SearchBar></SearchBar>          
           <Tags></Tags>
             <div className="directory-menu">
                 {
 
-                    books.map((item) =>(
+                    filterBooks.map((item) =>(
                         <MenyItem key={item.id} item={item} ></MenyItem>
                     ))
                 }
@@ -48,4 +60,8 @@ const Home = () =>{
     )
 }
 
-export default Home
+const mapState = createStructuredSelector({
+    searchBar
+})
+
+export default connect(mapState)(Home)

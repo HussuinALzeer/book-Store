@@ -19,7 +19,7 @@ import { collections } from "../../../../redux/Data/data.selector";
 import { thebookInfo } from "../../../../redux/getbook/book.selector";
 import { fetchTheBookInfoAsync } from "../../../../redux/getbook/book.action";
 
-const EditBooks = ({selectAdminEditBookID,fetchTheBookAsync,thebookInfo,fetchTheBookInfoAsync}) =>{
+const EditBooks = ({selectAdminEditBookID}) =>{
     
     const [file,setFile] = useState("")
     const [per, setPer] = useState("");

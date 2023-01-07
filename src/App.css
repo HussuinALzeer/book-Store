@@ -132,3 +132,17 @@ img.table-image{
     width: 70px;
     margin-left: 20px;
 }
+
+
+
+.bgIcon{
+    width: 100%;
+    height: 120%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+#root.bgBlack{
+    background: red;
+}

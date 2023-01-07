@@ -41,12 +41,12 @@ const rows = [
 
 ];
 
+
  const TableP = ({selectAdminEditPage,editOff,collections}) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
 
-  console.log(collections);
 
   ///////// bring the data ///////
   
@@ -60,6 +60,8 @@ const rows = [
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
+
+  
 
   return (
     
@@ -107,6 +109,7 @@ const rows = [
       />
     </Paper>
   );
+            
 }
 
 const mapstateToProps = createStructuredSelector({

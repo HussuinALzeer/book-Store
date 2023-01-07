@@ -1,11 +1,16 @@
 import { doc, setDoc,getDoc } from "firebase/firestore"; 
  import { initializeApp } from "firebase/app";
  import { getFirestore } from "firebase/firestore";
-import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider,signInWithPopup,signOut } from "firebase/auth";
 // import { getDatabase, ref, child, push, update } from "firebase/database";
 import { collection, addDoc } from "firebase/firestore"; 
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { getStorage } from "firebase/storage";
+import { useNavigate } from "react-router-dom";
 
+
+import firebase from 'firebase/compat/app'
+import 'firebase/compat/auth'
+import 'firebase/compat/firestore'
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -25,12 +30,120 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-export const provider = new GoogleAuthProvider();
 
-export const auth = getAuth();
+firebase.initializeApp(firebaseConfig)
+
+
+
+
+
+
 export const db = getFirestore(app);
-
 export const storage = getStorage(app);
+
+export const provider = new GoogleAuthProvider();
+export const auth = getAuth();
+
+ const firestore =firebase.firestore()
+
+provider.setCustomParameters({
+  'prompt': 'select_account'
+});
+
+
+////////////////// sign out ////////////////////
+
+export const SignOut = () =>{
+        const auth = getAuth();
+      signOut(auth).then(() => {
+        // Sign-out successful.
+      }).catch((error) => {
+        // An error happened.
+      });
+}
+
+
+////////////////// google login ////////////////
+
+export const signInWithGoogle = () => {
+  
+
+  const auth = getAuth();
+signInWithPopup(auth, provider)
+  .then((result) => {
+    
+
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    // The signed-in user info.
+    const user = result.user;
+    
+    // ...
+  }).catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    const email = error.customData.email;
+    // The AuthCredential type that was used.
+    const credential = GoogleAuthProvider.credentialFromError(error);
+    // ...
+  });
+
+}
+
+////////////////// email password login /////////////////
+
+export const CreateWithEmailPassword = (email,password) =>{
+createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ..
+  });
+
+}
+
+/////////// create user doc/////////////////
+
+
+export const createUserProfileDocument = async (userAuth, addtionalData) =>{
+  if(!userAuth)return;
+
+  const userRef=firestore.doc(`users/${userAuth.uid}`);
+
+  const snapShot =await userRef.get();
+
+  // console.log(firestore.doc('users/445asd'));
+  
+  if(!snapShot.exists){
+
+    const {displayName,email} = userAuth;
+    const createAt= new Date();
+
+    try {
+      await userRef.set({
+        displayName,
+        email,
+        createAt,   
+        ...addtionalData 
+      });
+    } catch (error) {
+      
+    }
+      
+    
+    
+  }
+
+  return userRef;
+}
 
 ////////////////// add /////////////////
 

@@ -5,7 +5,8 @@ import { addItemToCart } from "./cart.utlis"
 const  INITIAL_STATE = {
 
     hidden:true,
-    cartItems:[]
+    cartItems:[],
+    logInOut:true
 }
 
 const cartReducer = (state = INITIAL_STATE,action) =>{
@@ -24,6 +25,18 @@ const cartReducer = (state = INITIAL_STATE,action) =>{
                 cartItems:addItemToCart(state.cartItems,action.payload)
             }   
 
+        case cartTypeaction.CLEAR_ITEM_FROM_CART:
+            return{
+                ...state,
+                cartItems : state.cartItems.filter(cartItem => cartItem.id !== action.payload)
+            }    
+
+        case cartTypeaction.LOGINOUT:
+            return{
+                ...state,
+                logInOut:!state.logInOut
+            }
+            
         default:
             return {
                 ...state

@@ -2,7 +2,8 @@ import BookActionTypes from './book.type'
 
 const INITIAL_STATE = {
     errormessage:'',
-    thebook:''
+    thebook:'',
+    searchBar:''
 }
 
 
@@ -13,7 +14,6 @@ const ThebookReducer = ( state= INITIAL_STATE, action) =>{
         case BookActionTypes.FETCH_THEBOOK_START:
             return{
                 ...state,
-
             }    
 
         case BookActionTypes.FETCH_THEBOOK_SUCCESS:
@@ -25,7 +25,14 @@ const ThebookReducer = ( state= INITIAL_STATE, action) =>{
             return{
                 ...state,
                 errormessage:action.payload
-            }       
+            }    
+         
+        case BookActionTypes.SEARCHBAR:
+            return{
+                ...state,
+                searchBar:action.payload
+            }   
+
         default:
             return state;
     }

@@ -4,8 +4,11 @@ import {ReactComponent as Logo} from '../../../asset/rain.svg'
 
 import CartItem from '../cart-item/cart-item.component'
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
-const DropDown= ({cartItems}) =>{
+import { toggleHidde } from "../../../redux/cart/cart.action";
+
+const DropDown= ({cartItems,toggleHidde}) =>{
 
     return(
         <div className="cart-dropdown">
@@ -22,7 +25,7 @@ const DropDown= ({cartItems}) =>{
             </div>
             <div className="con">
                 <div className="liq-con">
-                   <span>Check out</span>
+                   <Link className="link" onClick={()=>toggleHidde()}  to={'/cart'}>Check out</Link>
                    <div className="liquid"></div>
                 </div>
             </div>
@@ -35,5 +38,9 @@ const DropDown= ({cartItems}) =>{
         cartItems
     })
 
+    const mapDispatchToProps = dispatch =>({
+        toggleHidde:()=> dispatch(toggleHidde())
+    })
 
-export default connect(mapStateToProps)(DropDown);
+
+export default connect(mapStateToProps,mapDispatchToProps)(DropDown);

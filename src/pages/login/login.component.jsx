@@ -1,24 +1,20 @@
 import React, { useState } from "react";
 
 import './login.styles.scss'
-
-import FormInput from '../../components/form-input/form-input.component'
-
-import CustomButton from '../../components/custom-button/custtom-button.component'
-import { createUserWithEmailAndPassword,GoogleAuthProvider,signInWithPopup } from "firebase/auth";
-import { auth, provider } from "../../firebase";
-
-import { useNavigate } from "react-router-dom";
-
-
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {ReactComponent as FbIcon} from '../../asset/fb.svg'
+import { signInWithGoogle } from "../../firebase";
+import { CreateWithEmailPassword } from "../../firebase";
 
+import { connect } from "react-redux";
+import { changeLoginTitle } from "../../redux/cart/cart.action";
+import { useNavigate } from 'react-router-dom';
 
-const Login = () =>{
+const Login = ({changeLoginTitle}) =>{
 
-    const navigate = useNavigate();
+  const history = useNavigate();
 
+  
     const [userCredentails, setCredentials] = useState({email:'',password:''})
 
     const {email,password} = userCredentails
@@ -27,77 +23,77 @@ const Login = () =>{
 
     const handleSubmit= (e) =>{
         e.preventDefault()
-        
-        createUserWithEmailAndPassword(auth, email, password)
-          .then((userCredential) => {
-            // Signed in 
-            const user = userCredential.user;
+        CreateWithEmailPassword(email,password)
+        changeLoginTitle()
+        history('/');
 
-
-            // toast.success('Success Notification !', {
-            //     position: toast.POSITION.TOP_RIGHT
-            // });
-
-            // setTimeout(()=>{
-            //     navigate('/')
-            // },3000)
-        
-            // ...
-          })
-          .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // ..
-          });
     }
 
+
   
+    const handelS = (e) =>{
+      e.preventDefault()
+      signInWithGoogle()
+      changeLoginTitle()
+      history('/');
+
+    }
 
 
     const handelChange = (event)=>{
         const {value,name} =event.target;
 
         setCredentials({...userCredentails, [name]:value}) // the name is the email and the value is what i will type in there
+
     }
 
+    console.log(email,password);
     return(
-        <div className="">
+      <div className="">
+
+        <div className="containerr" id="container">
+          <div className="form-container sign-up-container">
+          
+          </div>
+          <div className="form-container sign-in-container">
+
+            <form onSubmit={handleSubmit}>
+              <h1>Sign in</h1>
+              <div className="social-container">
+                <div type="submit" className="social" onClick={handelS}><FbIcon></FbIcon></div>
+              </div>
+
+              <span>or use your account</span>
+
+              <input className="input" type="email" placeholder="Email" value={email}  name="email" onChange={handelChange} required />
+              <input className="input" type="password" placeholder="Password" value={password} name="password" onChange={handelChange} required />
+              <button type="submit">Sign In</button>
+            </form>
 
 
-             <div className="SignIn">
-                <span>Sign in</span>
+          </div>
+          <div className="overlay-container">
+            <div className="overlay">
+              <div className="overlay-panel overlay-left">
+                <h1>Welcome Back!</h1>
+                <p>To keep connected with us please login with your personal info</p>
+              </div>
+              <div className="overlay-panel overlay-right">
+                <h1>Hello, Friend!</h1>
+                <p>Enter your personal details and start journey with us</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-
-                <form onSubmit={handleSubmit}>
-
-                    <FormInput
-                    type="emai"
-                    name="email"
-                    value={email}
-                    required
-                    handleChange={handelChange}
-                    label="email"
-                    />
-
-                    <FormInput
-                    type="password"
-                    name="password"
-                    value={password} 
-                    required
-                    handleChange={handelChange}
-                    label="password"
-                    />
-                    <div className="btn-con">
-                    <CustomButton type="submit" > Sign In</CustomButton>
-                    <ToastContainer></ToastContainer>
-                    </div>
-
-
-                </form>
-                </div>
-                        </div>
+      </div>
                     
     )
 }
 
-export default Login
+const mapdispatchToProps= dispatch => ({
+  changeLoginTitle :() => dispatch(changeLoginTitle())
+})
+
+
+export default connect(null,mapdispatchToProps)(Login)

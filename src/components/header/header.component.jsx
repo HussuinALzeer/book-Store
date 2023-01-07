@@ -8,11 +8,32 @@ import DropDown from "../cart/cart-dropdown/dropdown.component";
 import {connect} from 'react-redux'
 import { Link, useNavigate } from "react-router-dom";
 
-const Header = ({hidden}) =>{    
+import { selectlogInOut } from "../../redux/cart/cart.selector";
+import { selectHidden } from "../../redux/cart/cart.selector";
+import { createStructuredSelector } from "reselect";
+import { SignOut } from "../../firebase";
+import { changeLoginTitle } from "../../redux/cart/cart.action";
 
-    const nav = useNavigate()
+const Header = ({selectHidden,selectlogInOut,changeLoginTitle}) =>{    
+
+    window.addEventListener('scroll',function(){
+        const header = document.getElementById('header');
+
+        header.classList.toggle("sticky",window.scrollY > 0)
+
+    })
+
+    
+
+    const singOut = () =>{
+        SignOut()
+        changeLoginTitle()
+    }
+
+    const nav = useNavigate();
+
     return(
-        <div className="Header">
+        <div className="Header" id="header">
 
             <div className="logo" onClick={()=>nav('/')}>
                 Header
@@ -21,23 +42,36 @@ const Header = ({hidden}) =>{
             
 
             <div className="options">
-            <Link to={'/login'} className="option">login</Link>
-            <Link to={'/signup'} className="option">Sign up</Link>
-                <div className="option">Shop</div>
+            
+            {
+                selectlogInOut?
+                <Link to={'/login'} className="option">login</Link>:
+                <div onClick={()=> singOut()} className="option">sign out</div>
+            }    
+            
+
+            {/* <Link to={'/signup'} className="option">Sign up</Link> */}
+
                 <div className="option">
                 <CartIcon></CartIcon>    
                 </div>    
                 
             </div>    
             {
-                hidden? null:
+                selectHidden? null:
                 <DropDown></DropDown>
             }
         </div>
     )
 }
 
-const mapstateToProps= ({cartReducer:{hidden}}) =>({
-    hidden
+const mapstateToProps =  createStructuredSelector({
+    selectHidden,
+    selectlogInOut
 })
-export default connect(mapstateToProps)(Header)
+
+const mapdispatchToProps = dispatch =>({
+    changeLoginTitle:() => dispatch(changeLoginTitle())
+})
+
+export default connect(mapstateToProps,mapdispatchToProps)(Header)

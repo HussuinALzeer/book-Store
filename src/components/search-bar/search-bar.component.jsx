@@ -2,17 +2,20 @@ import React, { useEffect, useState } from "react";
 import { createSearchParams, Link, useNavigate } from "react-router-dom";
 import './search-bar.styles.scss'
 
+import { fetchSearchBar } from "../../redux/getbook/book.action";
+import { connect } from "react-redux";
 
-const SearchBar = () =>{
-    const nav = useNavigate()
+const SearchBar = ({fetchSearchBar}) =>{
 
     const [searchBar,setSearchBar] = useState('')
 
     const handelChange = (e)  =>{
         setSearchBar(e.target.value)
+        
+        fetchSearchBar(e.target.value)
     }
 
-
+    
    
     return(
         <div className="Search-container">
@@ -27,4 +30,8 @@ const SearchBar = () =>{
     )
 }
 
-export default SearchBar
+const mapDispatchToProps = dispatch =>({
+    fetchSearchBar:(text) => dispatch(fetchSearchBar(text))
+})
+
+export default connect(null,mapDispatchToProps)(SearchBar)

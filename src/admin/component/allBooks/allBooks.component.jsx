@@ -10,11 +10,26 @@ import TableP from './addTable/table.component'
 import EditBooks from '../allBooks/editBook/editBook.component'
 import { thebook } from '../../../redux/Data/data.selector'
 import { fetchBooksStartAsync } from '../../../redux/Data/data.action'
+import React from 'react'
+import { fetchTheBookAsync } from '../../../redux/Data/data.action'
+import { selectAdminEditBookID } from '../../../redux/admin-nav-bar/admin.selector'
+//{selectAdminEditPage}
+class Allbooks extends React.Component {
+  
+
+  componentDidMount(){
+    const {fetchTheBookAsync,selectAdminEditBookID} = this.props
+
+    fetchTheBookAsync(selectAdminEditBookID)
+    console.log('hiiiiiiiiiiiii');
+    console.log(selectAdminEditBookID);
+  }
+  render(){
+    const {selectAdminEditPage} = this.props
+
+   
 
 
-const Allbooks = ({selectAdminEditPage,fetchBooksStartAsync,thebook}) =>{
-  
-  
   return(
     
     <div className="dik ">
@@ -26,17 +41,18 @@ const Allbooks = ({selectAdminEditPage,fetchBooksStartAsync,thebook}) =>{
     </div>
   )
 }
-
+}
 
 
 const mapstateToProps = createStructuredSelector({
   selectAdminEditPage,
-  thebook
-  
+  thebook,
+  selectAdminEditBookID
 })
 
 const mapdispatchToProps = dispatch =>({
-  fetchBooksStartAsync : () => dispatch(fetchBooksStartAsync())
+  fetchBooksStartAsync : () => dispatch(fetchBooksStartAsync()),
+  fetchTheBookAsync : (id) => dispatch(fetchTheBookAsync(id))
 })
 
 
