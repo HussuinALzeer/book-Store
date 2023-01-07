@@ -46,7 +46,7 @@ const Home = ({searchBar}) =>{
         <div className="homepage" id="homepage">
                   
           <SearchBar></SearchBar>          
-          <Tags></Tags>
+          
             <div className="directory-menu">
                 {
 
